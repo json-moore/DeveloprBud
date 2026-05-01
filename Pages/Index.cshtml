@@ -1,0 +1,174 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-4">
+
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold">Welcome to your Dashboard</h1>
+        <p class="text-muted">Overview of your tasks and snippets</p>
+    </div>
+
+    <div class="text-center mb-4">
+        <img src="~/images/developrbudicon.png" style="max-width:120px;" />
+    </div>
+
+    <div class="row g-3">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h6 class="text-muted">Total Tasks Open</h6>
+                    <h2 class="fw-bold">@Model.TotalTasksOpen</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h6 class="text-muted">Total Snippets Saved</h6>
+                    <h2 class="fw-bold">@Model.TotalExistingSnippets</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h6 class="text-muted">Completed Today</h6>
+                    <h2 class="fw-bold">@Model.TasksCompletedToday</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h6 class="text-muted">Completed This Week</h6>
+                    <h2 class="fw-bold">@Model.TasksCompletedThisWeek</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h6 class="text-muted">Completed This Month</h6>
+                    <h2 class="fw-bold">@Model.TasksCompletedThisMonth</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mt-4 align-items-start">
+
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 position-relative">
+
+                @if (Model.LongestTaskOpen != null)
+                {
+                    <a asp-page="/Tasks"
+                       class="btn btn-primary btn-sm position-absolute top-0 end-0 m-2">
+                        View Tasks
+                    </a>
+                }
+
+                <div class="card-body">
+
+                    <h5 class="card-title">Longest Open Task</h5>
+
+                    @if (Model.LongestTaskOpen != null)
+                    {
+                        <p class="mb-1">
+                            <strong>@Model.LongestTaskOpen.Title</strong>
+                        </p>
+
+                        <p class="text-muted mb-0">
+                            Open for @Model.LongestTaskDayCount days
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="text-muted mb-0">No open tasks</p>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 position-relative">
+
+                <div class="card-body">
+
+                    <h5 class="card-title">Last Snippet Saved</h5>
+
+                    @if (Model.LastSnippetSaved != null)
+                    {
+                        <p class="text-muted mb-2">
+                            @Model.LastSnippetSaved.Title
+                        </p>
+
+                        <div class="position-absolute top-0 end-0 m-2 d-flex gap-2">
+
+                            <button class="btn btn-outline-primary btn-sm"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#snippetToggle">
+                                Preview
+                            </button>
+
+                            <button class="btn btn-outline-secondary btn-sm"
+                                type="button"
+                                onclick="copySnippet()">
+                                Copy
+                            </button>
+
+                        </div>
+
+                        <div class="collapse mt-3" id="snippetToggle">
+
+                            <p class="text-muted mb-1">
+                                Language: @Model.LastSnippetSaved.Language
+                            </p>
+
+                            <pre id="snippetBox"
+                                 style="white-space: pre-wrap;
+                                            background-color: #f8f9fa;
+                                            padding: 10px;
+                                            border-radius: 6px;">
+                                    @Model.LastSnippetSaved.Code
+                                </pre>
+
+                            @if (!string.IsNullOrEmpty(Model.LastSnippetSaved.Notes))
+                            {
+                                <hr />
+                                <p><strong>Notes:</strong></p>
+                                <p>@Model.LastSnippetSaved.Notes</p>
+                            }
+
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No snippets yet</p>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function copySnippet() {
+            const text = document.getElementById("snippetBox").innerText;
+            navigator.clipboard.writeText(text);
+        }
+    </script>
+}

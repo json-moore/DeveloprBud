@@ -1,0 +1,66 @@
+﻿@page
+@model DeveloprBud.Pages.EditTaskModel
+@{
+    ViewData["Title"] = "Edit Task";
+}
+
+<div class="container mt-4">
+
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold">Edit Task</h1>
+        <p class="text-muted">Update task details</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <form method="post">
+                        <input type="hidden" asp-for="TaskItem.Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="TaskItem.Title" class="form-label"></label>
+                            <input asp-for="TaskItem.Title" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="TaskItem.Description" class="form-label"></label>
+                            <textarea asp-for="TaskItem.Description"
+                                      class="form-control"
+                                      rows="5"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="TaskItem.Priority" class="form-label"></label>
+
+                            <select asp-for="TaskItem.Priority" class="form-select">
+                                <option value="">-- Select Priority --</option>
+
+                                @foreach (var level in new List<string> { "Low", "Medium", "High" })
+                                {
+                                    <option value="@level">@level</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="TaskItem.Tag" class="form-label"></label>
+                            <input asp-for="TaskItem.Tag" class="form-control" />
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+
+                            <a asp-page="/Tasks" class="btn btn-outline-secondary">
+                                Cancel
+                            </a>
+
+                            <button type="submit" class="btn btn-primary">
+                                Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+﻿@page
+@model DeveloprBud.Pages.EditCodeSnippetModel
+@{
+    ViewData["Title"] = "Edit Code Snippet";
+}
+
+<div class="container mt-4">
+
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold">Edit Code Snippet</h1>
+        <p class="text-muted">Update your saved snippet details</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <form method="post">
+
+                        <input type="hidden" asp-for="SingleSnippet.Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="SingleSnippet.Title" class="form-label"></label>
+                            <input asp-for="SingleSnippet.Title" class="form-control" />
+                            <span asp-validation-for="SingleSnippet.Title" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="SingleSnippet.Code" class="form-label"></label>
+                            <textarea asp-for="SingleSnippet.Code"
+                                      class="form-control"
+                                      rows="10"
+                                      style="font-family: monospace;"></textarea>
+                            <span asp-validation-for="SingleSnippet.Code" class="text-danger"></span>
+                        </div>
+
+                        <!-- language loop -->
+                        <div class="mb-3">
+                            <label asp-for="SingleSnippet.Language" class="form-label"></label>
+
+                            <select asp-for="SingleSnippet.Language" class="form-select">
+                                <option value="">-- Select Language --</option>
+
+                                @foreach (var lang in new List<string>
+                                                                {
+                                                                        "C", "C++", "C#", "Java", "JavaScript", "TypeScript",
+                                                                        "Python", "Ruby", "PHP", "Swift", "Kotlin", "Go",
+                                                                        "Rust", "Dart", "SQL", "HTML", "CSS", "Bash", "PowerShell"
+                                                                })
+                                {
+                                    <option value="@lang">@lang</option>
+                                }
+
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="SingleSnippet.Notes" class="form-label"></label>
+                            <textarea asp-for="SingleSnippet.Notes"
+                                      class="form-control"
+                                      rows="5"></textarea>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+
+                            <a asp-page="/CodeSnippets" class="btn btn-outline-secondary">
+                                Cancel
+                            </a>
+
+                            <button type="submit" class="btn btn-primary">
+                                Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,68 @@
+﻿@page
+@model DeveloprBud.Pages.ArchiveModel
+@{
+    ViewData["Title"] = "Archive";
+}
+
+<div class="container mt-4">
+
+    <!-- Header -->
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold">Task Archive</h1>
+        <p class="text-muted">Review your completed work history</p>
+        <small class="text-danger d-block">
+            All archived tasks are retained for 30 days
+        </small>
+    </div>
+
+    <!-- Archive List -->
+    <div class="row g-3">
+
+        @foreach (var task in Model.CompletedTasks)
+        {
+            var expireDate = task.CompletedDate?.AddDays(30);
+
+            <div class="col-12">
+
+                <div class="card shadow-sm border-0">
+
+                    <div class="card-body position-relative">
+
+                        <!-- Title -->
+                        <h5 class="fw-bold mb-1">@task.Title</h5>
+
+                        <!-- Description -->
+                        <p class="text-muted mb-2">
+                            @task.Description
+                        </p>
+
+                        <!-- Bottom meta row -->
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div>
+                                <small class="text-muted d-block">
+                                    Completed: @task.CompletedDate?.ToString("g")
+                                </small>
+
+                                <small class="text-danger">
+                                    Expires: @expireDate?.ToString("MM/dd/yyyy")
+                                </small>
+                            </div>
+
+                            <!-- Status badge (optional visual consistency) -->
+                            <span class="badge bg-secondary">
+                                Archived
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>
