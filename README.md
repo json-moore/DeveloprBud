@@ -60,3 +60,11 @@ Update-Database
 ```
 4. Run Application
 
+---
+# Developer Notes:
+Current App Version: v1.0
+- v2.0 Features - (Future Addon to Project)
+  - Developer Log for tracking project progress
+  - Toast Messages when tasks/snippets are added/deleted/completed
+  - Code formatting + highlighting
+  - Light / Dark Mode + Different color options
