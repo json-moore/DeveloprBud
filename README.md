@@ -4,19 +4,9 @@ DeveloprBud is a productivity web application built for developers of all experi
 
 ---
 
-## ✨ Features
+## Features
 
-### 🗂️ Task Management
-- Create, edit, delete, and complete tasks
-- Track development progress over time
-- Organize tasks using priority and tags
-
-### 💻 Code Snippet Management
-- Create, edit, and delete code snippets
-- Copy snippets instantly for reuse
-- Store useful code for future reference
-
-### 📊 Dashboard
+### 📊 **Dashboard**
 Provides developer accountability and productivity insights, including:
 - Tasks completed today, this week, and this month
 - Total code snippets saved
@@ -24,7 +14,17 @@ Provides developer accountability and productivity insights, including:
 - Longest open task
 - Overview of productivity trends
 
-### 📦 Task Archive
+### 🗂️ **Task Management**
+- Create, edit, delete, and complete tasks
+- Track development progress over time
+- Organize tasks using priority and tags
+
+### 💻 **Code Snippet Management**
+- Create, edit, and delete code snippets
+- Copy snippets instantly for reuse
+- Store useful code for future reference
+
+### 📦 **Task Archive**
 - View completed tasks
 - Automatically stores tasks completed within the last 30 days
 - Keeps workspace clean while preserving recent history
@@ -45,11 +45,8 @@ Provides developer accountability and productivity insights, including:
 
 ## 🚀 Getting Started
 
-### Prerequisites
-Make sure you have installed:
-- Visual Studio 2022 (or newer)
-- .NET SDK
-- SQL Server LocalDB (comes with Visual Studio)
+> [!Prerequisites]
+> Visual Studio 2022 (or newer) / .NET SDK
 
 ---
 
@@ -58,3 +55,11 @@ Make sure you have installed:
 1. Clone the repository:
 ```bash
 git clone https://github.com/yourusername/DeveloprBud.git
+```
+2. Open App in Visual Studio > Package Manager Console
+3. Run:
+```
+Update-Database
+```
+4. Run Application
+
