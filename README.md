@@ -43,15 +43,11 @@ Provides developer accountability and productivity insights, including:
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Setup Instructions
 
 > [!IMPORTANT]
 > Required Resources to run:
 > Visual Studio 2022 (or newer) / .NET SDK
-
----
-
-### Setup Instructions
 
 1. Clone the repository:
 ```bash
