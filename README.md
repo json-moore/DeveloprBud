@@ -45,7 +45,8 @@ Provides developer accountability and productivity insights, including:
 
 ## 🚀 Getting Started
 
-> [!Prerequisites]
+> [!IMPORTANT]
+> Required Resources to run:
 > Visual Studio 2022 (or newer) / .NET SDK
 
 ---
