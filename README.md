@@ -61,7 +61,7 @@ Update-Database
 4. Run Application
 
 ---
-# Developer Notes:
+## Developer Notes:
 Current App Version: v1.0
 - v2.0 Features - (Future Addon to Project)
   - Developer Log for tracking project progress
@@ -69,3 +69,16 @@ Current App Version: v1.0
   - Code formatting + highlighting
   - Light / Dark Mode + Different color options
   - Potential Web Hosted App
+
+# Screenshots
+### Dashboard
+![Dashboard of tasks with boxes showing how many completed in certain timeframes](Images/DeveloprBud_Dashboard.png)
+<br>
+### Tasks
+![Task manager screen showing a list of open tasks, their title, and descriptions](Images/DeveloprBud_Tasks.png)
+<br>
+### Code Snippets
+![Code snippets screen showing a list of code snippets saved for viewing](Images/DeveloprBud_CodeSnippets.png)
+<br>
+### Tasks Archive
+![Task archive screen showing a list of completed tasks within the last 30 days](Images/DeveloprBud_TasksArchive.png)
