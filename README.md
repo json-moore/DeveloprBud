@@ -68,3 +68,4 @@ Current App Version: v1.0
   - Toast Messages when tasks/snippets are added/deleted/completed
   - Code formatting + highlighting
   - Light / Dark Mode + Different color options
+  - Potential Web Hosted App
