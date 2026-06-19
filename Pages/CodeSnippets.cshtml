@@ -90,8 +90,21 @@
         </div>
     </div>
 
-    <div class="row g-3">
+    <!-- Toast Message Implementation -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Code Snippets</strong>
+                <small>@DateTime.Now.ToString("g")</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                @TempData["ToastMessage"]
+            </div>
+        </div>
+    </div>
 
+    <div class="row g-3">
         @foreach (var snippet in Model.CodeSnippets)
         {
             <pre id="code-@snippet.Id" style="display:none;">@snippet.Code</pre>
@@ -114,13 +127,10 @@
                         </div>
 
                         <!-- Code preview -->
-                        <pre style="max-height: 90px;
-                            overflow: auto;
-                            background-color: #f8f9fa;
-                            padding: 10px;
-                            border-radius: 6px;">
-                            @snippet.Code
-                        </pre>
+                        <pre class="language-csharp"
+                             style="max-height:90px; overflow:auto;">
+<code class="language-csharp">@snippet.Code</code>
+</pre>
 
                         <button class="btn btn-sm btn-outline-primary mt-2"
                                 data-bs-toggle="modal"
@@ -146,8 +156,8 @@
                         <div class="position-absolute top-0 end-0 m-2 d-flex gap-2">
 
                             <a asp-page="/EditCodeSnippet"
-                               asp-route-id="@snippet.Id"
-                               class="btn btn-sm btn-warning">
+                                   asp-route-id="@snippet.Id"
+                                   class="btn btn-sm btn-warning">
                                 Edit
                             </a>
 
@@ -176,12 +186,9 @@
                         </div>
 
                         <div class="modal-body">
-                            <pre style="white-space: pre-wrap;
-                                background:#f8f9fa;
-                                padding:10px;
-                                border-radius:6px;">
-                                @snippet.Code
-                            </pre>
+                            <pre class="language-csharp">
+<code class="language-csharp">@snippet.Code</code>
+</pre>
                         </div>
 
                         <div class="modal-footer">
@@ -217,4 +224,21 @@
             navigator.clipboard.writeText(el.innerText);
         }
     </script>
+
+    @if (TempData["ToastMessage"] != null)
+    {
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                const toastElement =
+                    document.getElementById('liveToast');
+
+                const toast =
+                    bootstrap.Toast.getOrCreateInstance(toastElement);
+
+                toast.show();
+
+            });
+        </script>
+    }
 }

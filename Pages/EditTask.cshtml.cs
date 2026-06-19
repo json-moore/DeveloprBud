@@ -63,6 +63,8 @@ namespace DeveloprBud.Pages
 
             await _context.SaveChangesAsync();
 
+            TempData["ToastMessage"] = "Changes Saved Successfully.";
+
             return RedirectToPage("/Tasks");
         }
     }

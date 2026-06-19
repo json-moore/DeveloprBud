@@ -77,6 +77,8 @@ namespace DeveloprBud.Pages
             _context.CodeSnippets.Add(NewSnippet);
             _context.SaveChanges();
 
+            TempData["ToastMessage"] = "Snippet saved successfully.";
+
             return RedirectToPage(); // refresh the page to show the new task
         }
 
@@ -93,7 +95,23 @@ namespace DeveloprBud.Pages
                 await _context.SaveChangesAsync();
             }
 
+            TempData["ToastMessage"] = "Snippet Deleted Successfully.";
+
             return RedirectToPage("/CodeSnippets");
+        }
+
+        public string GetPrismLanguage(string language)
+        {
+            return language switch
+            {
+                "C#" => "csharp",
+                "JavaScript" => "javascript",
+                "Python" => "python",
+                "SQL" => "sql",
+                "HTML" => "markup",
+                "CSS" => "css",
+                _ => "none"
+            };
         }
     }
 }
