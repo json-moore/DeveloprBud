@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\
+			 .ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\favicon.ico" />
     <None Include="wwwroot\Images\DeveloprBudIcon.png" />
   </ItemGroup>
 
