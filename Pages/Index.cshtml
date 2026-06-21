@@ -15,25 +15,27 @@
         <img src="~/images/developrbudicon.png" style="max-width:120px;" />
     </div>
 
-    <div class="row mt-4">
+    <div class="row mt-4 mb-4">
         <!-- Weather Card / Form -->
-        <form method="get" class="col-md-4">
-            <div class="card shadow-sm border-0">
-                <div class="card-body text-center">
-                    <h6 class="text-muted">Want to work away from your desk?</h6>
-                    <div class="input-group">
-                        <input type="text"
-                               name="zip"
-                               class="form-control"
-                               placeholder="Enter ZIP code" />
+        <div class="col-md-4">
+            <form method="get">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h6 class="text-muted">Want to work away from your desk?</h6>
+                        <div class="input-group">
+                            <input type="text"
+                                   name="zip"
+                                   class="form-control"
+                                   placeholder="Enter ZIP code" />
 
-                        <button type="submit" class="btn btn-primary">
-                            Search
-                        </button>
+                            <button type="submit" class="btn btn-primary">
+                                Search
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
 
 
         @if (Model.Weather != null)
@@ -45,6 +47,7 @@
 
                         <h2>@Model.Weather?.Current.Temp_f °F</h2>
                         <p>@Model.Weather?.Current.Condition.Text</p>
+                        <p>Last Fetched: @DateTime.Now</p>
                     </div>
                 </div>
             </div>
@@ -189,24 +192,24 @@
                             </code>
                         </pre>
 
-                        @if (!string.IsNullOrEmpty(Model.LastSnippetSaved.Notes))
-                        {
-                            <hr />
-                            <p><strong>Notes:</strong></p>
-                            <p>@Model.LastSnippetSaved.Notes</p>
-                        }
+                            @if (!string.IsNullOrEmpty(Model.LastSnippetSaved.Notes))
+                            {
+                                <hr />
+                                <p><strong>Notes:</strong></p>
+                                <p>@Model.LastSnippetSaved.Notes</p>
+                            }
 
-                    </div>
-                }
+                        </div>
+                    }
                     else
-                {
-                    <p class="text-muted">No snippets yet</p>
-                }
+                    {
+                        <p class="text-muted">No snippets yet</p>
+                    }
 
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 @section Scripts {

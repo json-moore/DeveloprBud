@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using DeveloprBud.APIs.WeatherAPI.Services;
 using DeveloprBud.APIs.WeatherAPI.Models;
+using System.Text.Json;
 
 namespace DeveloprBud.Pages
 {
@@ -74,8 +75,25 @@ namespace DeveloprBud.Pages
                 .OrderByDescending(s => s.CreatedDate)
                 .FirstOrDefaultAsync(); // returns only one snippet
 
-            Weather = await _weatherService.GetCurrentWeatherAsync(zip);
+            // Only call the API **IF** the the user enters a zip code and searches for their local weather
+            if (!string.IsNullOrWhiteSpace(zip))
+            {
+                Weather = await _weatherService.GetCurrentWeatherAsync(zip);
 
+                // convert weather response json object to text for browser session storage
+                HttpContext.Session.SetString(
+                    "WeatherData",
+                    JsonSerializer.Serialize(Weather));
+            }
+            else
+            {
+                var cachedWeather = HttpContext.Session.GetString("WeatherData");
+
+                if (!string.IsNullOrEmpty(cachedWeather))
+                {
+                    Weather = JsonSerializer.Deserialize<WeatherResponse>(cachedWeather);
+                }
+            }
         }
 
         public string GetPrismLanguage(string language)

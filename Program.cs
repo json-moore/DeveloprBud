@@ -21,6 +21,17 @@ builder.Services.AddHttpClient<WeatherService>();
 builder.Services.Configure<WeatherOptions>(
     builder.Configuration.GetSection("WeatherApi"));
 
+builder.Services.AddDistributedMemoryCache();
+
+// eenable session middleware with a 1 hour timeout and essential cookie settings
+// purpose: for storing temp weather data during navigations across the application
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromHours(1);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 
@@ -37,6 +48,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
+app.UseSession(); // enable session middleware
 
 app.UseAuthentication();
 app.UseAuthorization();

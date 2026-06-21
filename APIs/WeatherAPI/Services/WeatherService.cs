@@ -16,10 +16,10 @@ namespace DeveloprBud.APIs.WeatherAPI.Services
             _options = options.Value;
         }
 
-        public async Task<WeatherResponse?> GetCurrentWeatherAsync(string city)
+        public async Task<WeatherResponse?> GetCurrentWeatherAsync(string zip)
         {
             var url =
-                $"https://api.weatherapi.com/v1/current.json?key={_options.ApiKey}&q={city}";
+                $"https://api.weatherapi.com/v1/current.json?key={_options.ApiKey}&q={zip}";
 
             var response = await _httpClient.GetAsync(url);
 
