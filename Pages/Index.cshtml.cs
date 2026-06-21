@@ -8,6 +8,7 @@ using System.Security.Claims;
 using DeveloprBud.APIs.WeatherAPI.Services;
 using DeveloprBud.APIs.WeatherAPI.Models;
 using System.Text.Json;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace DeveloprBud.Pages
 {
@@ -34,7 +35,6 @@ namespace DeveloprBud.Pages
         public int TasksCompletedThisMonth { get; set; } // tasks completed this month - displayed in dashboard
         public CodeSnippet? LastSnippetSaved { get; set; } // last snippet saved - displayed in dashboard
         public WeatherResponse? Weather { get; set; } // current weather - displayed in dashboard
-
 
         public async Task OnGetAsync(string zip)
         {
@@ -84,10 +84,12 @@ namespace DeveloprBud.Pages
                 HttpContext.Session.SetString(
                     "WeatherData",
                     JsonSerializer.Serialize(Weather));
+
             }
             else
             {
                 var cachedWeather = HttpContext.Session.GetString("WeatherData");
+
 
                 if (!string.IsNullOrEmpty(cachedWeather))
                 {
