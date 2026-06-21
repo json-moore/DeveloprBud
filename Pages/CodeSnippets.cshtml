@@ -127,10 +127,11 @@
                         </div>
 
                         <!-- Code preview -->
-                        <pre class="language-csharp"
-                             style="max-height:90px; overflow:auto;">
-<code class="language-csharp">@snippet.Code</code>
-</pre>
+                        <pre style="max-height:90px; overflow:auto;">
+                        <code class="language-@Model.GetPrismLanguage(snippet.Language)">
+                            @snippet.Code
+                        </code>
+                        </pre>
 
                         <button class="btn btn-sm btn-outline-primary mt-2"
                                 data-bs-toggle="modal"
@@ -187,8 +188,10 @@
 
                         <div class="modal-body">
                             <pre class="language-csharp">
-<code class="language-csharp">@snippet.Code</code>
-</pre>
+                                <code class="language-@Model.GetPrismLanguage(snippet.Language)">
+                                    @snippet.Code
+                                </code>
+                            </pre>
                         </div>
 
                         <div class="modal-footer">

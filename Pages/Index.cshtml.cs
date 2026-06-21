@@ -35,7 +35,7 @@ namespace DeveloprBud.Pages
         public WeatherResponse? Weather { get; set; } // current weather - displayed in dashboard
 
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string zip)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             TotalTasksOpen = await _context.TaskItems
@@ -74,8 +74,22 @@ namespace DeveloprBud.Pages
                 .OrderByDescending(s => s.CreatedDate)
                 .FirstOrDefaultAsync(); // returns only one snippet
 
-            Weather = await _weatherService.GetCurrentWeatherAsync("Spartanburg");
+            Weather = await _weatherService.GetCurrentWeatherAsync(zip);
 
+        }
+
+        public string GetPrismLanguage(string language)
+        {
+            return language switch
+            {
+                "C#" => "csharp",
+                "JavaScript" => "javascript",
+                "Python" => "python",
+                "SQL" => "sql",
+                "HTML" => "markup",
+                "CSS" => "css",
+                _ => "none"
+            };
         }
     }
 }

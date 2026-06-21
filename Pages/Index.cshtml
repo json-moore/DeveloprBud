@@ -11,20 +11,55 @@
         <p class="text-muted">Overview of your tasks and snippets</p>
     </div>
 
-    @if (Model.Weather != null)
-    {
-        <div class="card mt-3">
-            <div class="card-body">
-                <h5>Current Weather</h5>
-
-                <h2>@Model.Weather.Current.Temp_f °F</h2>
-                <p>@Model.Weather.Current.Condition.Text</p>
-            </div>
-        </div>
-    }
-
     <div class="text-center mb-4">
         <img src="~/images/developrbudicon.png" style="max-width:120px;" />
+    </div>
+
+    <div class="row mt-4">
+        <!-- Weather Card / Form -->
+        <form method="get" class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h6 class="text-muted">Want to work away from your desk?</h6>
+                    <div class="input-group">
+                        <input type="text"
+                               name="zip"
+                               class="form-control"
+                               placeholder="Enter ZIP code" />
+
+                        <button type="submit" class="btn btn-primary">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        @if (Model.Weather != null)
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h6 class="text-muted">Current Weather</h6>
+
+                        <h2>@Model.Weather?.Current.Temp_f °F</h2>
+                        <p>@Model.Weather?.Current.Condition.Text</p>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h6 class="text-muted">Current Weather</h6>
+                        <p class="text-muted">No weather data available</p>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 
     <div class="row g-3">
@@ -84,7 +119,7 @@
                 @if (Model.LongestTaskOpen != null)
                 {
                     <a asp-page="/Tasks"
-                       class="btn btn-primary btn-sm position-absolute top-0 end-0 m-2">
+                           class="btn btn-primary btn-sm position-absolute top-0 end-0 m-2">
                         View Tasks
                     </a>
                 }
@@ -128,15 +163,15 @@
                         <div class="position-absolute top-0 end-0 m-2 d-flex gap-2">
 
                             <button class="btn btn-outline-primary btn-sm"
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#snippetToggle">
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#snippetToggle">
                                 Preview
                             </button>
 
                             <button class="btn btn-outline-secondary btn-sm"
-                                type="button"
-                                onclick="copySnippet()">
+                                    type="button"
+                                    onclick="copySnippet()">
                                 Copy
                             </button>
 
@@ -148,32 +183,30 @@
                                 Language: @Model.LastSnippetSaved.Language
                             </p>
 
-                            <pre id="snippetBox"
-                                 style="white-space: pre-wrap;
-                                            background-color: #f8f9fa;
-                                            padding: 10px;
-                                            border-radius: 6px;">
-                                    @Model.LastSnippetSaved.Code
-                                </pre>
+                            <pre>
+                            <code class="language-@Model.GetPrismLanguage(Model.LastSnippetSaved.Language)">
+                            @Model.LastSnippetSaved.Code
+                            </code>
+                        </pre>
 
-                            @if (!string.IsNullOrEmpty(Model.LastSnippetSaved.Notes))
-                            {
-                                <hr />
-                                <p><strong>Notes:</strong></p>
-                                <p>@Model.LastSnippetSaved.Notes</p>
-                            }
+                        @if (!string.IsNullOrEmpty(Model.LastSnippetSaved.Notes))
+                        {
+                            <hr />
+                            <p><strong>Notes:</strong></p>
+                            <p>@Model.LastSnippetSaved.Notes</p>
+                        }
 
-                        </div>
-                    }
+                    </div>
+                }
                     else
-                    {
-                        <p class="text-muted">No snippets yet</p>
-                    }
+                {
+                    <p class="text-muted">No snippets yet</p>
+                }
 
-                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 @section Scripts {
