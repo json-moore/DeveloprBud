@@ -2,5 +2,6 @@
 {
     public class WeatherOptions
     {
+        public string? ApiKey { get; set; }
     }
 }

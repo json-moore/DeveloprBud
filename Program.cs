@@ -1,5 +1,7 @@
-using Microsoft.AspNetCore.Identity;
+using DeveloprBud.APIs.WeatherAPI;
+using DeveloprBud.APIs.WeatherAPI.Services;
 using DeveloprBud.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
 }).AddEntityFrameworkStores<AppDbContext>();
+
+// register weather API for dashboard
+builder.Services.AddHttpClient<WeatherService>();
+builder.Services.Configure<WeatherOptions>(
+    builder.Configuration.GetSection("WeatherApi"));
 
 // Add services to the container.
 builder.Services.AddRazorPages();
