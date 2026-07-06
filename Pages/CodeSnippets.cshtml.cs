@@ -28,11 +28,6 @@ namespace DeveloprBud.Pages
         [BindProperty]
         public CodeSnippet NewSnippet { get; set; } = new CodeSnippet(); // initialize to avoid null reference
 
-        // drop down list
-        public List<string> CodeLanguages { get; set; } = new()
-        {
-            "C", "C++", "C#", "Java", "JavaScript", "TypeScript", "Python", "Ruby", "PHP", "Swift", "Kotlin", "Go", "Rust", "Dart", "SQL", "HTML", "CSS", "Bash", "PowerShell"
-        };
 
         // property for search query
         [BindProperty(SupportsGet = true)]
@@ -98,20 +93,6 @@ namespace DeveloprBud.Pages
             TempData["ToastMessage"] = "Snippet Deleted Successfully.";
 
             return RedirectToPage("/CodeSnippets");
-        }
-
-        public string GetPrismLanguage(string language)
-        {
-            return language switch
-            {
-                "C#" => "csharp",
-                "JavaScript" => "javascript",
-                "Python" => "python",
-                "SQL" => "sql",
-                "HTML" => "markup",
-                "CSS" => "css",
-                _ => "none"
-            };
         }
     }
 }

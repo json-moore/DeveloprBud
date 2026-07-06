@@ -98,17 +98,16 @@ namespace DeveloprBud.Pages
             }
         }
 
-        public string GetPrismLanguage(string language)
+        public string GetPrismLanguage(string? language)
         {
             return language switch
             {
-                "C#" => "csharp",
-                "JavaScript" => "javascript",
-                "Python" => "python",
-                "SQL" => "sql",
-                "HTML" => "markup",
-                "CSS" => "css",
-                _ => "none"
+                "html" => "markup", // Prism "markup"
+                "xml" => "markup",
+                "c_cpp" => "cpp",   // Prism "cpp"
+                null => "plaintext",
+                "" => "plaintext",
+                _ => language
             };
         }
     }

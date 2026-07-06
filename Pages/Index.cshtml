@@ -45,8 +45,8 @@
                     <div class="card-body text-center">
                         <h6 class="text-muted">Current Weather</h6>
 
-                        <h2>@Model.Weather?.Current.Temp_f °F</h2>
-                        <p>@Model.Weather?.Current.Condition.Text</p>
+                        <h2>@Model.Weather?.Current?.Temp_f °F</h2>
+                        <p>@Model.Weather?.Current?.Condition?.Text</p>
                     </div>
                 </div>
             </div>
@@ -186,9 +186,7 @@
                             </p>
 
                             <pre>
-                            <code class="language-@Model.GetPrismLanguage(Model.LastSnippetSaved.Language)">
-                            @Model.LastSnippetSaved.Code
-                            </code>
+<code class="language-@Model.GetPrismLanguage(Model.LastSnippetSaved.Language)">@Model.LastSnippetSaved.Code</code>
                         </pre>
 
                             @if (!string.IsNullOrEmpty(Model.LastSnippetSaved.Notes))

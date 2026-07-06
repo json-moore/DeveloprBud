@@ -87,3 +87,7 @@ select.input-validation-error:focus {
     transform: translateY(-2px);
 }
 
+pre, code {
+    text-align: left;
+    white-space: pre;
+}

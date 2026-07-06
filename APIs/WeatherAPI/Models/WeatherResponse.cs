@@ -2,6 +2,6 @@
 {
     public class WeatherResponse
     {
-        public Current Current { get; set; }
+        public Current? Current { get; set; }
     }
 }

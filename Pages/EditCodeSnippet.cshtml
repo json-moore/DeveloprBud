@@ -25,15 +25,6 @@
                             <span asp-validation-for="SingleSnippet.Title" class="text-danger"></span>
                         </div>
 
-                        <div class="mb-3">
-                            <label asp-for="SingleSnippet.Code" class="form-label"></label>
-                            <textarea asp-for="SingleSnippet.Code"
-                                      class="form-control"
-                                      rows="10"
-                                      style="font-family: monospace;"></textarea>
-                            <span asp-validation-for="SingleSnippet.Code" class="text-danger"></span>
-                        </div>
-
                         <!-- language loop -->
                         <div class="mb-3">
                             <label asp-for="SingleSnippet.Language" class="form-label"></label>
@@ -41,17 +32,17 @@
                             <select asp-for="SingleSnippet.Language" class="form-select">
                                 <option value="">-- Select Language --</option>
 
-                                @foreach (var lang in new List<string>
-                                                                {
-                                                                        "C", "C++", "C#", "Java", "JavaScript", "TypeScript",
-                                                                        "Python", "Ruby", "PHP", "Swift", "Kotlin", "Go",
-                                                                        "Rust", "Dart", "SQL", "HTML", "CSS", "Bash", "PowerShell"
-                                                                })
+                                @foreach (var lang in CodeLanguageHelper.CodeLanguages)
                                 {
                                     <option value="@lang">@lang</option>
                                 }
-
                             </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="SingleSnippet.Code"></label>
+                            <div id="editor" style="height:300px;border:1px solid #ddd;"></div>
+                            <textarea asp-for="SingleSnippet.Code" id="codeField" hidden></textarea>
                         </div>
 
                         <div class="mb-4">
@@ -111,4 +102,41 @@
             });
         </script>
     }
+
+    <script>
+        let editor;
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            editor = ace.edit("editor");
+
+            editor.setTheme("ace/theme/merbivore_soft");
+            editor.session.setMode("ace/mode/text");
+
+            editor.setOptions({
+                fontSize: "14px",
+                showPrintMargin: false,
+                wrap: true
+            });
+
+            // load existing code from hidden textarea
+            const textarea = document.getElementById("codeField");
+            editor.setValue(textarea.value || "", -1);
+
+            // language change (fix selector if needed)
+            const languageSelect = document.querySelector("[asp-for='SingleSnippet.Language']");
+
+            if (languageSelect) {
+                languageSelect.addEventListener("change", function () {
+                    editor.session.setMode("ace/mode/" + this.value);
+                });
+            }
+
+            // sync on submit
+            document.querySelector("form").addEventListener("submit", function () {
+                textarea.value = editor.getValue();
+            });
+
+        });
+    </script>
 }

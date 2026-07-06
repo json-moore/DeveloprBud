@@ -38,7 +38,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
-                <form method="post" asp-page-handler="AddSnippet">
+                <form method="post" asp-page-handler="AddSnippet" id="addSnippetForm">
 
                     <div class="modal-header">
                         <h5 class="modal-title">Create Code Snippet</h5>
@@ -53,19 +53,22 @@
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="NewSnippet.Code"></label>
-                            <textarea asp-for="NewSnippet.Code" class="form-control" rows="6"></textarea>
-                        </div>
-
-                        <div class="mb-3">
                             <label asp-for="NewSnippet.Language"></label>
-                            <select asp-for="NewSnippet.Language" class="form-select">
+                            <select asp-for="NewSnippet.Language"
+                                    class="form-select"
+                                    id="languageSelect">
                                 <option value="">-- Select Language --</option>
-                                @foreach (var lang in Model.CodeLanguages)
+                                @foreach (var lang in CodeLanguageHelper.CodeLanguages)
                                 {
                                     <option value="@lang">@lang</option>
                                 }
                             </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="NewSnippet.Code"></label>
+                            <div id="editor" style="height:300px;border:1px solid #ddd;"></div>
+                            <textarea asp-for="NewSnippet.Code" id="codeField" hidden></textarea>
                         </div>
 
                         <div class="mb-3">
@@ -126,12 +129,14 @@
 
                         </div>
 
-                        <!-- Code preview -->
-                        <pre style="max-height:90px; overflow:auto;">
-                        <code class="language-@Model.GetPrismLanguage(snippet.Language)">
-                            @snippet.Code
-                        </code>
-                        </pre>
+<!-- Code preview -->
+<pre style="max-height: 90px;
+overflow: auto;
+background-color: #f8f9fa;
+padding: 10px;
+border-radius: 6px;">
+<code class="language-@PrismHelper.GetPrismLanguage(snippet.Language)">@snippet.Code</code>
+</pre>
 
                         <button class="btn btn-sm btn-outline-primary mt-2"
                                 data-bs-toggle="modal"
@@ -157,8 +162,8 @@
                         <div class="position-absolute top-0 end-0 m-2 d-flex gap-2">
 
                             <a asp-page="/EditCodeSnippet"
-                                   asp-route-id="@snippet.Id"
-                                   class="btn btn-sm btn-warning">
+                               asp-route-id="@snippet.Id"
+                               class="btn btn-sm btn-warning">
                                 Edit
                             </a>
 
@@ -187,11 +192,15 @@
                         </div>
 
                         <div class="modal-body">
-                            <pre class="language-csharp">
-                                <code class="language-@Model.GetPrismLanguage(snippet.Language)">
-                                    @snippet.Code
-                                </code>
-                            </pre>
+
+<!-- View Full Code preview -->
+<pre style="max-height: 500px;
+overflow: auto;
+background-color: #f8f9fa;
+padding: 10px;
+border-radius: 6px;">
+<code class="language-@PrismHelper.GetPrismLanguage(snippet.Language)">@snippet.Code</code>
+</pre>
                         </div>
 
                         <div class="modal-footer">
@@ -218,6 +227,7 @@
 
     <partial name="_ValidationScriptsPartial" />
 
+    <!-- Copy Code Function -->
     <script>
         function copyCode(id) {
             const el = document.getElementById("code-" + id);
@@ -228,6 +238,7 @@
         }
     </script>
 
+    <!-- Toast Notification -->
     @if (TempData["ToastMessage"] != null)
     {
         <script>
@@ -244,4 +255,41 @@
             });
         </script>
     }
+
+    <!-- Ace Editor Initialization -->
+    <script>
+        let editor;
+
+        document.getElementById("addSnippetModal").addEventListener("shown.bs.modal", function () {
+
+            if (!editor) {
+                editor = ace.edit("editor");
+
+                // Set the theme and mode for the editor
+                editor.setTheme("ace/theme/merbivore_soft");
+                editor.session.setMode("ace/mode/text");
+
+                // Set editor options
+                editor.setOptions({
+                    fontSize: "14px",
+                    showPrintMargin: false,
+                    wrap: true
+                });
+            }
+
+            editor.resize();
+        });
+
+        // Change language mode based on selection
+                const languageSelect = document.getElementById("languageSelect");
+
+        languageSelect.addEventListener("change", function () {
+            editor.session.setMode("ace/mode/" + this.value);
+        });
+
+        // Update hidden textarea before form submission
+                document.getElementById("addSnippetForm").addEventListener("submit", function () {
+            document.getElementById("codeField").value = editor.getValue();
+        });
+    </script>
 }
