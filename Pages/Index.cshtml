@@ -132,6 +132,7 @@
 
                     @if (Model.LongestTaskOpen != null)
                     {
+                        <hr class="my-3" />
                         <p class="mb-1">
                             <strong>@Model.LongestTaskOpen.Title</strong>
                         </p>
@@ -158,6 +159,7 @@
 
                     @if (Model.LastSnippetSaved != null)
                     {
+                        <hr class="my-3" />
                         <p class="text-muted mb-2">
                             @Model.LastSnippetSaved.Title
                         </p>
@@ -186,12 +188,11 @@
                             </p>
 
                             <pre>
-<code class="language-@Model.GetPrismLanguage(Model.LastSnippetSaved.Language)">@Model.LastSnippetSaved.Code</code>
+<code class="language-@PrismHelper.GetPrismLanguage(Model.LastSnippetSaved.Language)">@Model.LastSnippetSaved.Code</code>
                         </pre>
 
                             @if (!string.IsNullOrEmpty(Model.LastSnippetSaved.Notes))
                             {
-                                <hr />
                                 <p><strong>Notes:</strong></p>
                                 <p>@Model.LastSnippetSaved.Notes</p>
                             }

@@ -91,3 +91,7 @@ pre, code {
     text-align: left;
     white-space: pre;
 }
+
+#editor {
+    border-radius: 7px;
+}
