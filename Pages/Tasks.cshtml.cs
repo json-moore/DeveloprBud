@@ -89,6 +89,8 @@ namespace DeveloprBud.Pages
             _context.TaskItems.Add(NewTask);
             await _context.SaveChangesAsync();
 
+            TempData["ToastMessage"] = "Task Created Successfully.";
+
             return RedirectToPage();
         }
 
@@ -106,6 +108,9 @@ namespace DeveloprBud.Pages
                 task.CompletedDate = DateTime.Now;
                 await _context.SaveChangesAsync();
             }
+
+            TempData["ToastMessage"] = "Task Completed.";
+
             return RedirectToPage();
         }
 
@@ -122,6 +127,8 @@ namespace DeveloprBud.Pages
                 _context.TaskItems.Remove(task);
                 await _context.SaveChangesAsync();
             }
+
+            TempData["ToastMessage"] = "Task Deleted Successfully.";
 
             return RedirectToPage();
         }

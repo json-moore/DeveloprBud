@@ -13,6 +13,6 @@ namespace DeveloprBud.Models
         public string? Status { get; set; } // status default to "not completed"
         public DateTime CreatedDate { get; set; } // defalt date set
         public DateTime? CompletedDate { get; set; }
-        public string? UserId { get; set; } = string.Empty; // foreign key to associate task with a user
+        public string? UserId { get; set; } = string.Empty;
     }
 }

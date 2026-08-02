@@ -40,7 +40,6 @@ namespace DeveloprBud.Pages
             }
             // ***** End of retention policy *****
 
-            // expiredate = 
 
             // get completed tasks and order them by what was most recently completed
             CompletedTasks = _context.TaskItems

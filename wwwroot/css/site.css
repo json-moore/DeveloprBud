@@ -75,7 +75,7 @@ select.input-validation-error:focus {
 /* End of Modal Validation Styling */
 
 .card {
-    border: 1px solid transparent !important;
+    border: 1px solid #d3d3d3 !important;
     border-radius: 10px;
     transition: 0.2s ease-in-out;
     background-color: #ffffff;
@@ -87,3 +87,11 @@ select.input-validation-error:focus {
     transform: translateY(-2px);
 }
 
+pre, code {
+    text-align: left;
+    white-space: pre;
+}
+
+#editor {
+    border-radius: 7px;
+}

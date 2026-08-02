@@ -12,6 +12,6 @@ namespace DeveloprBud.Models
         public string? Language { get; set; } // ? / not a required field
         public string? Notes { get; set; } // code context - notes / ? // not a required field
         public DateTime CreatedDate { get; set; } // default date set
-        public string? UserId { get; set; } = string.Empty; // foreign key to associate code snippet with a user
+        public string? UserId { get; set; } = string.Empty;
     }
 }

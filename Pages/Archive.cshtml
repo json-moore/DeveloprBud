@@ -18,6 +18,16 @@
     <!-- Archive List -->
     <div class="row g-3">
 
+        @if (Model.CompletedTasks == null || !Model.CompletedTasks.Any())
+        {
+            <div class="col-12">
+                <div>
+                    <div class="card-body text-center">
+                        <h5 class="fw-bold mb-0">No archived tasks.</h5>
+                    </div>
+                </div>
+            </div>
+        }
         @foreach (var task in Model.CompletedTasks)
         {
             var expireDate = task.CompletedDate?.AddDays(30);

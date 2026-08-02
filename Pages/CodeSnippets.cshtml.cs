@@ -28,11 +28,6 @@ namespace DeveloprBud.Pages
         [BindProperty]
         public CodeSnippet NewSnippet { get; set; } = new CodeSnippet(); // initialize to avoid null reference
 
-        // drop down list
-        public List<string> CodeLanguages { get; set; } = new()
-        {
-            "C", "C++", "C#", "Java", "JavaScript", "TypeScript", "Python", "Ruby", "PHP", "Swift", "Kotlin", "Go", "Rust", "Dart", "SQL", "HTML", "CSS", "Bash", "PowerShell"
-        };
 
         // property for search query
         [BindProperty(SupportsGet = true)]
@@ -77,6 +72,8 @@ namespace DeveloprBud.Pages
             _context.CodeSnippets.Add(NewSnippet);
             _context.SaveChanges();
 
+            TempData["ToastMessage"] = "Snippet saved successfully.";
+
             return RedirectToPage(); // refresh the page to show the new task
         }
 
@@ -92,6 +89,8 @@ namespace DeveloprBud.Pages
                 _context.CodeSnippets.Remove(snippet);
                 await _context.SaveChangesAsync();
             }
+
+            TempData["ToastMessage"] = "Snippet Deleted Successfully.";
 
             return RedirectToPage("/CodeSnippets");
         }
