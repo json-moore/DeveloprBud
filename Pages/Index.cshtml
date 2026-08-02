@@ -121,7 +121,7 @@
                 @if (Model.LongestTaskOpen != null)
                 {
                     <a asp-page="/Tasks"
-                           class="btn btn-primary btn-sm position-absolute top-0 end-0 m-2">
+                       class="btn btn-primary btn-sm position-absolute top-0 end-0 m-2">
                         View Tasks
                     </a>
                 }
@@ -161,7 +161,7 @@
                     {
                         <hr class="my-3" />
                         <p class="text-muted mb-2">
-                            @Model.LastSnippetSaved.Title
+                            <strong>Title:</strong> @Model.LastSnippetSaved.Title
                         </p>
 
                         <div class="position-absolute top-0 end-0 m-2 d-flex gap-2">
@@ -184,10 +184,10 @@
                         <div class="collapse mt-3" id="snippetToggle">
 
                             <p class="text-muted mb-1">
-                                Language: @Model.LastSnippetSaved.Language
+                                <strong>Language:</strong> @Model.LastSnippetSaved.Language
                             </p>
 
-                            <pre>
+                            <pre id="snippetBox">
 <code class="language-@PrismHelper.GetPrismLanguage(Model.LastSnippetSaved.Language)">@Model.LastSnippetSaved.Code</code>
                         </pre>
 
@@ -210,11 +210,34 @@
     </div>
 </div>
 
+<!-- Toast Message Implementation -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Dashboard</strong>
+            <small>@DateTime.Now.ToString("g")</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            @TempData["ToastMessage"]
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     <script>
         function copySnippet() {
             const text = document.getElementById("snippetBox").innerText;
-            navigator.clipboard.writeText(text);
+
+            navigator.clipboard.writeText(text).then(function () {
+                const toastElement = document.getElementById("liveToast");
+                const toastBody = toastElement.querySelector(".toast-body");
+
+                toastBody.textContent = "Copied to clipboard!";
+
+                const toast = bootstrap.Toast.getOrCreateInstance(toastElement);
+                toast.show();
+            });
         }
     </script>
 }

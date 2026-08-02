@@ -93,7 +93,6 @@
         </div>
     </div>
     <!-- END OF add snippet modal -->
-
     <!-- Toast Message Implementation -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -131,30 +130,30 @@
 
                         </div>
 
-<!-- Code preview -->
-<pre style="max-height: 90px;
-overflow: auto;
-background-color: #f8f9fa;
-padding: 10px;
-border-radius: 6px;">
-<code class="language-@PrismHelper.GetPrismLanguage(snippet.Language)">@snippet.Code</code>
-</pre>
+                        <!-- Code preview -->
+                        <pre style="max-height: 90px;
+                        overflow: auto;
+                        background-color: #f8f9fa;
+                        padding: 10px;
+                        border-radius: 6px;">
+                        <code class="language-@PrismHelper.GetPrismLanguage(snippet.Language)">@snippet.Code</code>
+                    </pre>
 
-                        <button class="btn btn-sm btn-outline-primary mt-2"
-                                data-bs-toggle="modal"
-                                data-bs-target="#fullCodeModal-@snippet.Id">
-                            View Full Code
-                        </button>
+                    <button class="btn btn-sm btn-outline-primary mt-2"
+                            data-bs-toggle="modal"
+                            data-bs-target="#fullCodeModal-@snippet.Id">
+                        View Full Code
+                    </button>
 
-                        <button type="button"
-                                class="btn btn-sm btn-outline-primary mt-2"
-                                onclick="copyCode(@snippet.Id)">
-                            Copy Code
-                        </button>
+                    <button type="button"
+                            class="btn btn-sm btn-outline-primary mt-2"
+                            onclick="copyCode(@snippet.Id)">
+                        Copy Code
+                    </button>
 
-                        <!-- Show notes section if notes are attached -->
-                        @if (!string.IsNullOrWhiteSpace(snippet.Notes))
-                        {
+                    <!-- Show notes section if notes are attached -->
+                    @if (!string.IsNullOrWhiteSpace(snippet.Notes))
+                    {
                         <hr class="my-3" />
                         <div>
                             <h6 class="text-muted mb-1">Notes</h6>
@@ -162,69 +161,69 @@ border-radius: 6px;">
                                 @snippet.Notes
                             </p>
                         </div>
-                        }
+                    }
 
-                        <div class="position-absolute top-0 end-0 m-2 d-flex gap-2">
+                    <div class="position-absolute top-0 end-0 m-2 d-flex gap-2">
 
-                            <a asp-page="/EditCodeSnippet"
-                               asp-route-id="@snippet.Id"
-                               class="btn btn-sm btn-warning">
-                                Edit
-                            </a>
+                        <a asp-page="/EditCodeSnippet"
+                           asp-route-id="@snippet.Id"
+                           class="btn btn-sm btn-warning">
+                            Edit
+                        </a>
 
-                            <form method="post" asp-page-handler="DeleteSnippet">
-                                <input type="hidden" name="id" value="@snippet.Id" />
-                                <button type="submit" class="btn btn-sm btn-danger">
-                                    Delete
-                                </button>
-                            </form>
-
-                        </div>
+                        <form method="post" asp-page-handler="DeleteSnippet">
+                            <input type="hidden" name="id" value="@snippet.Id" />
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                Delete
+                            </button>
+                        </form>
 
                     </div>
 
                 </div>
 
             </div>
+
+        </div>
 
         <!-- view snippet modal -->
-            <div class="modal fade" id="fullCodeModal-@snippet.Id" tabindex="-1">
-                <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                    <div class="modal-content">
+        <div class="modal fade" id="fullCodeModal-@snippet.Id" tabindex="-1">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
 
-                        <div class="modal-header">
-                            <h5 class="modal-title">@snippet.Title - Full Code</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-
-<!-- View Full Code preview -->
-<pre style="max-height: 500px;
-overflow: auto;
-background-color: #f8f9fa;
-padding: 10px;
-border-radius: 6px;">
-<code class="language-@PrismHelper.GetPrismLanguage(snippet.Language)">@snippet.Code</code>
-</pre>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button"
-                                    class="btn btn-sm btn-outline-primary mt-2"
-                                    onclick="copyCode(@snippet.Id)">
-                                Copy Code
-                            </button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                Close
-                            </button>
-                        </div>
-
+                    <div class="modal-header">
+                        <h5 class="modal-title">@snippet.Title - Full Code</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
-                </div>
-            </div>
-        }
+                    <div class="modal-body">
 
+                        <!-- View Full Code preview -->
+                        <pre style="max-height: 500px;
+                        overflow: auto;
+                        background-color: #f8f9fa;
+                        padding: 10px;
+                        border-radius: 6px;">
+                        <code class="language-@PrismHelper.GetPrismLanguage(snippet.Language)">@snippet.Code</code>
+                    </pre>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-sm btn-outline-primary mt-2"
+                            onclick="copyCode(@snippet.Id)">
+                        Copy Code
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+
+            </div>
+        </div>
     </div>
+}
+
+</div>
 
 </div>
 
@@ -239,7 +238,15 @@ border-radius: 6px;">
 
             if (!el) return;
 
-            navigator.clipboard.writeText(el.innerText);
+            navigator.clipboard.writeText(el.innerText).then(function (){
+                const toastElement = document.getElementById('liveToast');
+                const toastBody = toastElement.querySelector('.toast-body');
+
+                toastBody.textContent = "Copied to clipboard!";
+
+                const toast = bootstrap.Toast.getOrCreateInstance(toastElement);
+                toast.show();
+            });
         }
     </script>
 
