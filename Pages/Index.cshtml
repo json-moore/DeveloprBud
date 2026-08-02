@@ -11,37 +11,92 @@
         <p class="text-muted">Overview of your tasks and snippets</p>
     </div>
 
-    <div class="text-center mb-4">
-        <img src="~/images/developrbudicon.png" style="max-width:120px;" />
-    </div>
+    <div class="row g-4">
+        <!-- LEFT SIDE: PRODUCTIVITY -->
+        <div class="col-md-7">
 
-    <div class="row mt-4 mb-4">
-        <!-- Weather Card / Form -->
-        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+
+                    <h5 class="card-title mb-4">Your Productivity</h5>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Total Tasks Open</h6>
+                                    <h2 class="fw-bold">@Model.TotalTasksOpen</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Total Snippets Saved</h6>
+                                    <h2 class="fw-bold">@Model.TotalExistingSnippets</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Tasks Completed Today</h6>
+                                    <h2 class="fw-bold">@Model.TasksCompletedToday</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Tasks Completed This Week</h6>
+                                    <h2 class="fw-bold">@Model.TasksCompletedThisWeek</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body text-center">
+                                    <h6 class="text-muted">Tasks Completed This Month</h6>
+                                    <h2 class="fw-bold">@Model.TasksCompletedThisMonth</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="col-md-5">
+
+            <!-- Weather Card / Form -->
             <form method="get">
-                <div class="card shadow-sm border-0">
+                <div class="card shadow-sm border-0 mb-3">
                     <div class="card-body text-center">
                         <h6 class="text-muted">Want to work away from your desk?</h6>
-                        <div class="input-group">
-                            <input type="text"
-                                   name="zip"
-                                   class="form-control"
-                                   placeholder="Enter ZIP code" />
 
-                            <button type="submit" class="btn btn-primary">
-                                Search
-                            </button>
+                        <div class="input-group">
+                            <input type="text" name="zip" class="form-control" placeholder="Enter your ZIP code" />
+
+                            <button type="submit" class="btn btn-primary">Search</button>
                         </div>
                     </div>
                 </div>
             </form>
-        </div>
 
 
-        @if (Model.Weather != null)
-        {
-            <div class="col-md-4">
-                <div class="card shadow-sm border-0">
+            @if (Model.Weather != null)
+            {
+                <div class="card shadow-sm border-0 mb-3">
                     <div class="card-body text-center">
                         <h6 class="text-muted">Current Weather</h6>
 
@@ -49,81 +104,24 @@
                         <p>@Model.Weather?.Current?.Condition?.Text</p>
                     </div>
                 </div>
-            </div>
-        }
-        else
-        {
-            <div class="col-md-4">
-                <div class="card shadow-sm border-0">
+            }
+            else
+            {
+                <div class="card shadow-sm border-0 mb-3">
                     <div class="card-body text-center">
                         <h6 class="text-muted">Current Weather</h6>
                         <p class="text-muted">No weather data available</p>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
+            }
 
-    <div class="row g-3">
 
-        <div class="col-md-4">
-            <div class="card shadow-sm border-0">
-                <div class="card-body text-center">
-                    <h6 class="text-muted">Total Tasks Open</h6>
-                    <h2 class="fw-bold">@Model.TotalTasksOpen</h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card shadow-sm border-0">
-                <div class="card-body text-center">
-                    <h6 class="text-muted">Total Snippets Saved</h6>
-                    <h2 class="fw-bold">@Model.TotalExistingSnippets</h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card shadow-sm border-0">
-                <div class="card-body text-center">
-                    <h6 class="text-muted">Completed Today</h6>
-                    <h2 class="fw-bold">@Model.TasksCompletedToday</h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card shadow-sm border-0">
-                <div class="card-body text-center">
-                    <h6 class="text-muted">Completed This Week</h6>
-                    <h2 class="fw-bold">@Model.TasksCompletedThisWeek</h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card shadow-sm border-0">
-                <div class="card-body text-center">
-                    <h6 class="text-muted">Completed This Month</h6>
-                    <h2 class="fw-bold">@Model.TasksCompletedThisMonth</h2>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row mt-4 align-items-start">
-
-        <div class="col-md-6">
-            <div class="card shadow-sm border-0 position-relative">
+            <!-- Longest Open Task -->
+            <div class="card shadow-sm border-0 position-relative mb-3">
 
                 @if (Model.LongestTaskOpen != null)
                 {
-                    <a asp-page="/Tasks"
-                       class="btn btn-primary btn-sm position-absolute top-0 end-0 m-2">
-                        View Tasks
-                    </a>
+                    <a asp-page="/Tasks" class="btn btn-primary btn-sm position-absolute top-0 end-0 m-2">View Tasks</a>
                 }
 
                 <div class="card-body">
@@ -133,13 +131,10 @@
                     @if (Model.LongestTaskOpen != null)
                     {
                         <hr class="my-3" />
-                        <p class="mb-1">
-                            <strong>@Model.LongestTaskOpen.Title</strong>
-                        </p>
 
-                        <p class="text-muted mb-0">
-                            Open for @Model.LongestTaskDayCount days
-                        </p>
+                        <p class="mb-1"><strong>@Model.LongestTaskOpen.Title</strong></p>
+
+                        <p class="text-muted mb-0">Open for @Model.LongestTaskDayCount days</p>
                     }
                     else
                     {
@@ -148,9 +143,9 @@
 
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-6">
+
+            <!-- Last Snippet Saved -->
             <div class="card shadow-sm border-0 position-relative">
 
                 <div class="card-body">
@@ -160,36 +155,24 @@
                     @if (Model.LastSnippetSaved != null)
                     {
                         <hr class="my-3" />
-                        <p class="text-muted mb-2">
-                            <strong>Title:</strong> @Model.LastSnippetSaved.Title
-                        </p>
+
+                        <p class="text-muted mb-2"><strong>Title:</strong> @Model.LastSnippetSaved.Title</p>
 
                         <div class="position-absolute top-0 end-0 m-2 d-flex gap-2">
 
-                            <button class="btn btn-outline-primary btn-sm"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#snippetToggle">
-                                Preview
-                            </button>
+                            <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#snippetToggle">Preview</button>
 
-                            <button class="btn btn-outline-secondary btn-sm"
-                                    type="button"
-                                    onclick="copySnippet()">
-                                Copy
-                            </button>
+                            <button class="btn btn-outline-secondary btn-sm" type="button" onclick="copySnippet()">Copy</button>
 
                         </div>
 
                         <div class="collapse mt-3" id="snippetToggle">
 
-                            <p class="text-muted mb-1">
-                                <strong>Language:</strong> @Model.LastSnippetSaved.Language
-                            </p>
+                            <p class="text-muted mb-1"><strong>Language:</strong> @Model.LastSnippetSaved.Language</p>
 
                             <pre id="snippetBox">
 <code class="language-@PrismHelper.GetPrismLanguage(Model.LastSnippetSaved.Language)">@Model.LastSnippetSaved.Code</code>
-                        </pre>
+                            </pre>
 
                             @if (!string.IsNullOrEmpty(Model.LastSnippetSaved.Notes))
                             {
@@ -206,7 +189,9 @@
 
                 </div>
             </div>
+
         </div>
+
     </div>
 </div>
 
