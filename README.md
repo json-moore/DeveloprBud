@@ -1,65 +1,112 @@
-# DeveloprBud
+# 🚀 DeveloprBud
 
-DeveloprBud is a productivity web application built for developers of all experience levels to manage development tasks and store reusable code snippets. It helps developers stay organized, track progress, and maintain a personal library of useful code references.
+DeveloprBud is a developer-focused productivity web application designed to help developers stay organized, manage development tasks, and build a personal library of reusable code snippets.
+
+DeveloprBud combines **task management, productivity insights, code snippet management, and developer-focused tools** into one workspace.
 
 ---
 
-## Features
+## ✨ Features
 
-### 📊 **Dashboard**
-Provides developer accountability and productivity insights, including:
+### 📊 Dashboard
+
+The dashboard provides an at-a-glance view of development activity and productivity, including:
+
 - Tasks completed today, this week, and this month
 - Total code snippets saved
-- Most recently saved snippet
+- Most recently saved code snippet
 - Longest open task
-- Overview of productivity trends
+- Productivity insights and activity trends
+- Weather information for users working remotely
 
-### 🗂️ **Task Management**
-- Create, edit, delete, and complete tasks
-- Track development progress over time
-- Organize tasks using priority and tags
+### 🗂️ Task Management
 
-### 💻 **Code Snippet Management**
+- Create, edit, and delete tasks
+- Mark tasks as completed
+- Assign priority levels to tasks
+- Organize tasks using tags
+- Track task creation and completion dates
+- View and manage development tasks from the dashboard
+
+### 💻 Code Snippet Management
+
 - Create, edit, and delete code snippets
-- Copy snippets instantly for reuse
-- Store useful code for future reference
+- Organize snippets by programming language
+- Copy code snippets with one click
+- Add notes and descriptions to snippets
+- Syntax-highlighted code previews with PrismJS
+- Live in-browser code editing with Ace Code Editor
+- Dynamic syntax highlighting based on the selected programming language
 
-### 📦 **Task Archive**
-- View completed tasks
-- Automatically stores tasks completed within the last 30 days
-- Keeps workspace clean while preserving recent history
+### 📦 Task Archive
+
+- View recently completed tasks
+- Automatically archive completed tasks based on their completion date
+- Preserve recent task history while keeping the active workspace organized
+
+### 🔔 User Feedback
+
+- Toast notifications for creating, editing, and deleting tasks and snippets
+- Confirmation feedback when copying code snippets
+- User-friendly feedback for completed actions
 
 ---
 
 ## 🛠️ Tech Stack
 
+### Backend
+
 - ASP.NET Core Razor Pages
 - Entity Framework Core
 - SQL Server LocalDB
-- ASP.NET Identity (Authentication)
-- Bootstrap
+- ASP.NET Identity
+
+### Frontend
+
+- HTML
 - CSS
-- JavaScript (copy-to-clipboard functionality)
+- Bootstrap
+- JavaScript
+- PrismJS
+- Ace Code Editor
+
+### APIs & Tools
+
+- Weather API
+- NuGet
+- Visual Studio 2022
+- Git / GitHub
+
+---
+
+## 🚀 V2 Release
+
+DeveloprBud V2 introduces a redesigned dashboard, improved user feedback, developer-focused code editing capabilities, and additional productivity features.
+
+### What's New
+
+- Weather API integration for users working remotely
+- Redesigned dashboard with a more condensed UI and improved workflow
+- Toast notifications for tasks and code snippets
+- PrismJS syntax highlighting for code previews
+- Ace Code Editor integration for creating and editing code snippets
+- Dynamic syntax highlighting based on the selected programming language
 
 ---
 
 ## 🚀 Setup Instructions
 
 > [!IMPORTANT]
-> Required Resources to run:
-> Visual Studio 2022 (or newer) / .NET SDK
+> **Required Resources**
+> - Visual Studio 2022 or newer
+> - .NET SDK
+> - SQL Server LocalDB
 
-1. Clone the repository:
+### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/yourusername/DeveloprBud.git
 ```
-2. Open App in Visual Studio > Package Manager Console
-3. Run:
-```
-Update-Database
-```
-4. Run Application
-
 # Screenshots
 ### Dashboard
 ![Dashboard of tasks with boxes showing how many completed in certain timeframes](wwwroot/Images/DeveloprBud_Dashboard.png)
