@@ -4,6 +4,13 @@ DeveloprBud is a developer-focused productivity web application designed to help
 
 DeveloprBud combines **task management, productivity insights, code snippet management, and developer-focused tools** into one workspace.
 
+## 🌐 Live Demo
+
+[**Launch DeveloprBud**](https://developrbud-bdbferhbb3ewd4hp.centralus-01.azurewebsites.net/)
+
+> [!NOTE]
+> **Deployment Note:** The live demo is hosted on Azure using serverless/free-tier resources. After periods of inactivity, the database may need a few moments to resume, so the initial page load can take longer than usual. If the page appears to stall, please refresh the browser.
+
 ---
 
 ## ✨ Features
@@ -58,7 +65,7 @@ The dashboard provides an at-a-glance view of development activity and productiv
 
 - ASP.NET Core Razor Pages
 - Entity Framework Core
-- SQL Server LocalDB
+- SQL Server
 - ASP.NET Identity
 
 ### Frontend
@@ -76,6 +83,7 @@ The dashboard provides an at-a-glance view of development activity and productiv
 - NuGet
 - Visual Studio 2022
 - Git / GitHub
+- Microsoft Azure
 
 ---
 
@@ -94,6 +102,32 @@ DeveloprBud V2 introduces a redesigned dashboard, improved user feedback, develo
 
 ---
 
+## 📸 Screenshots
+
+### Dashboard
+
+![Dashboard of tasks with boxes showing how many completed in certain timeframes](wwwroot/Images/DeveloprBud_Dashboard.png)
+
+<br>
+
+### Tasks
+
+![Task manager screen showing a list of open tasks, their title, and descriptions](wwwroot/Images/DeveloprBud_Tasks.png)
+
+<br>
+
+### Code Snippets
+
+![Code snippets screen showing a list of code snippets saved for viewing](wwwroot/Images/DeveloprBud_CodeSnippets.png)
+
+<br>
+
+### Tasks Archive
+
+![Task archive screen showing a list of completed tasks within the last 30 days](wwwroot/Images/DeveloprBud_TasksArchive.png)
+
+---
+
 ## 🚀 Setup Instructions
 
 > [!IMPORTANT]
@@ -105,17 +139,4 @@ DeveloprBud V2 introduces a redesigned dashboard, improved user feedback, develo
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/DeveloprBud.git
-```
-# Screenshots
-### Dashboard
-![Dashboard of tasks with boxes showing how many completed in certain timeframes](wwwroot/Images/DeveloprBud_Dashboard.png)
-<br>
-### Tasks
-![Task manager screen showing a list of open tasks, their title, and descriptions](wwwroot/Images/DeveloprBud_Tasks.png)
-<br>
-### Code Snippets
-![Code snippets screen showing a list of code snippets saved for viewing](wwwroot/Images/DeveloprBud_CodeSnippets.png)
-<br>
-### Tasks Archive
-![Task archive screen showing a list of completed tasks within the last 30 days](wwwroot/Images/DeveloprBud_TasksArchive.png)
+git clone https://github.com/json-moore/DeveloprBud.git
