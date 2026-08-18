@@ -2,7 +2,7 @@
 
 DeveloprBud is a developer-focused productivity web application designed to help developers stay organized, manage development tasks, and build a personal library of reusable code snippets.
 
-DeveloprBud combines **task management, productivity insights, code snippet management, and developer-focused tools** into one workspace.
+DeveloprBud combines **task management, productivity insights, and code snippet management** into one workspace.
 
 ## 🌐 Live Demo
 
