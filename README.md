@@ -63,6 +63,7 @@ The dashboard provides an at-a-glance view of development activity and productiv
 
 ### Backend
 
+- C#
 - ASP.NET Core Razor Pages
 - Entity Framework Core
 - SQL Server
@@ -99,6 +100,7 @@ DeveloprBud V2 introduces a redesigned dashboard, improved user feedback, develo
 - PrismJS syntax highlighting for code previews
 - Ace Code Editor integration for creating and editing code snippets
 - Dynamic syntax highlighting based on the selected programming language
+- Live Demo Deployed Web Application hosted on Azure
 
 ---
 
@@ -128,7 +130,7 @@ DeveloprBud V2 introduces a redesigned dashboard, improved user feedback, develo
 
 ---
 
-## 🚀 Setup Instructions
+## 🚀 Local Machine Setup Instructions
 
 > [!IMPORTANT]
 > **Required Resources**
