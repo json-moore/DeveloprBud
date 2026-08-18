@@ -97,10 +97,11 @@ DeveloprBud V2 introduces a redesigned dashboard, improved user feedback, develo
 - Weather API integration for users working remotely
 - Redesigned dashboard with a more condensed UI and improved workflow
 - Toast notifications for tasks and code snippets
-- PrismJS syntax highlighting for code previews
+- PrismJS syntax highlighting for code preview
 - Ace Code Editor integration for creating and editing code snippets
 - Dynamic syntax highlighting based on the selected programming language
 - Live Demo Deployed Web Application hosted on Azure
+- Continuous Deployment: Configured GitHub Actions to automatically build and deploy updates to Azure App Service whenever changes are pushed to the main branch.
 
 ---
 
